@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATRID v1.0</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-overlay" aria-hidden="true"></div>
+
+    <main class="machine">
+
+        <header class="header">
+            <h1>MATRID</h1>
+            <p>MECHANICAL AUTHENTICATION AND TRANSFORMATION<br>ROTOR IDENTITY DEVICE</p>
+        </header>
+
+        <section class="top-panel">
+
+            <aside class="status-panel">
+                <div class="brand-mark">
+                    <span>MATRID</span>
+                    <small>ROTOR IDENTITY DEVICE</small>
+                </div>
+
+                <div class="status-list">
+                    <div class="status-item ready">
+                        <span class="status-bulb"></span>
+                        <span>LISTO</span>
+                    </div>
+
+                    <div class="status-item processing">
+                        <span class="status-bulb"></span>
+                        <span>PROCESANDO</span>
+                    </div>
+
+                    <div class="status-item error">
+                        <span class="status-bulb"></span>
+                        <span>ERROR</span>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="rotor-section">
+
+            <div class="rotor-container">
+
+                <!-- ROTOR I -->
+                <div class="rotor">
+                    <div class="rotor-frame">
+
+                        <div class="rotor-top-indicator"></div>
+
+                        <div class="rotor-disc" id="rotorDisc1">
+                            <div class="rotor-teeth"></div>
+
+                             <div class="rotor-center">
+                                I
+                            </div>
+                        </div>
+
+                        <div class="rotor-window">
+                            <span id="rotorLabel1">I</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- ROTOR II -->
+                <div class="rotor">
+                    <div class="rotor-frame">
+
+                        <div class="rotor-top-indicator"></div>
+
+                        <div class="rotor-disc" id="rotorDisc2">
+                            <div class="rotor-teeth"></div>
+
+                            <div class="rotor-center">
+                                II
+                            </div>
+                        </div>
+
+                        <div class="rotor-window">
+                            <span id="rotorLabel2">II</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            <!-- ROTOR III -->
+                <div class="rotor">
+                    <div class="rotor-frame">
+
+                        <div class="rotor-top-indicator"></div>
+
+                        <div class="rotor-disc" id="rotorDisc3">
+                            <div class="rotor-teeth"></div>
+
+                            <div class="rotor-center">
+                                III
+                            </div>
+                        </div>
+
+                        <div class="rotor-window">
+                            <span id="rotorLabel3">III</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+            <section class="io-panel">
+
+                <div class="display-box">
+                    <label for="inputDisplay">ENTRADA</label>
+                    <input
+                        id="inputDisplay"
+                        type="text"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        placeholder="Introduce un nombre o palabra..."
+                        maxlength="64">
+                </div>
+
+                <div class="display-box">
+                    <label for="passwordDisplay">CONTRASEÑA</label>
+                    <div id="passwordDisplay" class="password-display" aria-live="polite">****************</div>
+                </div>
+
+                <div class="control-row">
+
+                    <div class="length-control">
+                        <label for="lengthSelect">LONGITUD</label>
+                        <select id="lengthSelect">
+                            <option value="8">8</option>
+                            <option value="12">12</option>
+                            <option value="16" selected>16</option>
+                            <option value="20">20</option>
+                            <option value="24">24</option>
+                            <option value="32">32</option>
+                        </select>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="generateButton" type="button">GENERAR</button>
+                        <button id="copyButton" type="button">COPIAR</button>
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+
+        <section class="character-lights" aria-label="Indicadores de letras">
+
+            <div class="character-row">
+                <button class="character-light" data-light-key="A" type="button"><span>A</span><i></i></button>
+                <button class="character-light" data-light-key="B" type="button"><span>B</span><i></i></button>
+                <button class="character-light" data-light-key="C" type="button"><span>C</span><i></i></button>
+                <button class="character-light" data-light-key="D" type="button"><span>D</span><i></i></button>
+                <button class="character-light" data-light-key="E" type="button"><span>E</span><i></i></button>
+                <button class="character-light" data-light-key="F" type="button"><span>F</span><i></i></button>
+                <button class="character-light" data-light-key="G" type="button"><span>G</span><i></i></button>
+                <button class="character-light" data-light-key="H" type="button"><span>H</span><i></i></button>
+                <button class="character-light" data-light-key="I" type="button"><span>I</span><i></i></button>
+                <button class="character-light" data-light-key="J" type="button"><span>J</span><i></i></button>
+                <button class="character-light" data-light-key="K" type="button"><span>K</span><i></i></button>
+                <button class="character-light" data-light-key="L" type="button"><span>L</span><i></i></button>
+                <button class="character-light" data-light-key="M" type="button"><span>M</span><i></i></button>
+            </div>
+
+            <div class="character-row">
+                <button class="character-light" data-light-key="N" type="button"><span>N</span><i></i></button>
+                <button class="character-light" data-light-key="O" type="button"><span>O</span><i></i></button>
+                <button class="character-light" data-light-key="P" type="button"><span>P</span><i></i></button>
+                <button class="character-light" data-light-key="Q" type="button"><span>Q</span><i></i></button>
+                <button class="character-light" data-light-key="R" type="button"><span>R</span><i></i></button>
+                <button class="character-light" data-light-key="S" type="button"><span>S</span><i></i></button>
+                <button class="character-light" data-light-key="T" type="button"><span>T</span><i></i></button>
+                <button class="character-light" data-light-key="U" type="button"><span>U</span><i></i></button>
+                <button class="character-light" data-light-key="V" type="button"><span>V</span><i></i></button>
+                <button class="character-light" data-light-key="W" type="button"><span>W</span><i></i></button>
+                <button class="character-light" data-light-key="X" type="button"><span>X</span><i></i></button>
+                <button class="character-light" data-light-key="Y" type="button"><span>Y</span><i></i></button>
+                <button class="character-light" data-light-key="Z" type="button"><span>Z</span><i></i></button>
+            </div>
+
+        </section>
+
+        <section class="keyboard-panel" aria-label="Teclado MATRID">
+
+            <div class="keyboard-row letters-row">
+                <button class="key" data-key="Q" type="button">Q</button>
+                <button class="key" data-key="W" type="button">W</button>
+                <button class="key" data-key="E" type="button">E</button>
+                <button class="key" data-key="R" type="button">R</button>
+                <button class="key" data-key="T" type="button">T</button>
+                <button class="key" data-key="Y" type="button">Y</button>
+                <button class="key" data-key="U" type="button">U</button>
+                <button class="key" data-key="I" type="button">I</button>
+                <button class="key" data-key="O" type="button">O</button>
+                <button class="key" data-key="P" type="button">P</button>
+            </div>
+
+            <div class="keyboard-row letters-row">
+                <button class="key" data-key="A" type="button">A</button>
+                <button class="key" data-key="S" type="button">S</button>
+                <button class="key" data-key="D" type="button">D</button>
+                <button class="key" data-key="F" type="button">F</button>
+                <button class="key" data-key="G" type="button">G</button>
+                <button class="key" data-key="H" type="button">H</button>
+                <button class="key" data-key="J" type="button">J</button>
+                <button class="key" data-key="K" type="button">K</button>
+                <button class="key" data-key="L" type="button">L</button>
+            </div>
+
+            <div class="keyboard-row letters-row">
+                <button class="key function-key" id="shiftKey" data-key="SHIFT" type="button">SHIFT</button>
+                <button class="key" data-key="Z" type="button">Z</button>
+                <button class="key" data-key="X" type="button">X</button>
+                <button class="key" data-key="C" type="button">C</button>
+                <button class="key" data-key="V" type="button">V</button>
+                <button class="key" data-key="B" type="button">B</button>
+                <button class="key" data-key="N" type="button">N</button>
+                <button class="key" data-key="M" type="button">M</button>
+            </div>
+
+            <div class="keyboard-row numbers-row">
+                <button class="key" data-key="1" type="button">1</button>
+                <button class="key" data-key="2" type="button">2</button>
+                <button class="key" data-key="3" type="button">3</button>
+                <button class="key" data-key="4" type="button">4</button>
+                <button class="key" data-key="5" type="button">5</button>
+                <button class="key" data-key="6" type="button">6</button>
+                <button class="key" data-key="7" type="button">7</button>
+                <button class="key" data-key="8" type="button">8</button>
+                <button class="key" data-key="9" type="button">9</button>
+                <button class="key" data-key="0" type="button">0</button>
+            </div>
+
+            <div class="keyboard-row symbols-row">
+                <button class="key" data-key="!" type="button">!</button>
+                <button class="key" data-key="@" type="button">@</button>
+                <button class="key" data-key="#" type="button">#</button>
+                <button class="key" data-key="$" type="button">$</button>
+                <button class="key" data-key="%" type="button">%</button>
+                <button class="key" data-key="&" type="button">&amp;</button>
+                <button class="key" data-key="*" type="button">*</button>
+                <button class="key" data-key="?" type="button">?</button>
+                <button class="key" data-key="+" type="button">+</button>
+                <button class="key" data-key="-" type="button">-</button>
+                <button class="key" data-key="_" type="button">_</button>
+                <button class="key" data-key="=" type="button">=</button>
+            </div>
+
+        </section>
+
+        <footer class="status">
+            <span class="status-led online"></span>
+            <span id="statusText">SYSTEM READY</span>
+        </footer>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

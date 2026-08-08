@@ -1,0 +1,688 @@
+/* =========================================================
+   MATRID v1.0
+   ========================================================= */
+
+:root{
+    --metal:#171717;
+    --metal2:#292929;
+    --metal3:#444;
+    --brass:#b88a3b;
+    --gold:#e2bd68;
+    --green:#45ff2f;
+    --amber:#ffae24;
+    --red:#ff2d20;
+    --text:#e8e0d1;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{min-height:100%}
+
+body{
+    min-height:100vh;
+    padding:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--text);
+    background:#160904;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow:auto;
+}
+
+.background-overlay{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background-image:
+        linear-gradient(rgba(15,5,1,.18),rgba(15,5,1,.38)),
+        url("assets/fondo.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.background-overlay:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.48) 100%);
+}
+
+.machine{
+    position:relative;
+    width:min(1060px,96vw);
+    max-height:calc(100vh - 24px);
+    padding:18px 20px 14px;
+    display:flex;
+    flex-direction:column;
+    background:linear-gradient(145deg,#303030,#171717 50%,#0b0b0b);
+    border:3px solid #5e5e5e;
+    border-radius:12px;
+    box-shadow:inset 0 0 0 2px #090909,inset 0 0 28px rgba(255,255,255,.04),0 18px 55px rgba(0,0,0,.8);
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.machine:before,.machine:after{
+    content:"";
+    position:absolute;
+    top:12px;
+    width:13px;height:13px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#ddd 0%,#777 25%,#252525 70%,#050505 100%);
+    border:1px solid #111;
+    box-shadow:0 1px 3px #000,inset 0 1px 1px rgba(255,255,255,.35);
+}
+.machine:before{left:13px}
+.machine:after{right:13px}
+
+/* =========================================================
+   CABECERA
+   ========================================================= */
+.header{text-align:center;flex-shrink:0}
+.header h1{
+    color:var(--gold);
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(40px,4vw,54px);
+    line-height:.95;
+    letter-spacing:10px;
+    text-shadow:0 1px 0 #5d3c13,0 3px 4px #000,0 0 12px rgba(214,167,76,.16);
+}
+.header p{
+    margin-top:7px;
+    color:#bdb3a2;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:9px;
+    line-height:1.35;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* ZONA SUPERIOR */
+.top-panel{
+    display:grid;
+    grid-template-columns:175px minmax(350px,1fr) 255px;
+    gap:12px;
+    margin-top:16px;
+}
+
+.status-panel,.rotor-panel,.io-panel,.character-lights,.keyboard-panel,.status{
+    background:linear-gradient(145deg,#2c2c2c,#151515 55%,#0c0c0c);
+    border:2px solid #3f3f3f;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06),inset 0 0 15px rgba(0,0,0,.55),0 5px 12px rgba(0,0,0,.4);
+}
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+.status-panel{padding:13px}
+.brand-mark{text-align:center;padding:8px 4px 11px;border-bottom:1px solid #4b4b4b}
+.brand-mark span{
+    display:block;color:var(--gold);
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:25px;letter-spacing:4px;text-shadow:0 2px 3px #000
+}
+.brand-mark small{
+    display:block;margin-top:5px;color:#a79c8b;
+    font-size:7px;line-height:1.5;letter-spacing:1.4px
+}
+.status-list{margin-top:17px;display:flex;flex-direction:column;gap:13px}
+.status-item{display:flex;align-items:center;gap:9px;color:#bdb4a6;font-family:Georgia,"Times New Roman",serif;font-size:11px;letter-spacing:1px}
+.status-bulb{width:14px;height:14px;border-radius:50%;border:2px solid #151515;box-shadow:inset 0 1px 2px rgba(255,255,255,.35),0 2px 4px #000}
+.status-item.ready .status-bulb{background:#52ff32;box-shadow:0 0 5px #52ff32,0 0 14px rgba(82,255,50,.8)}
+.status-item.processing .status-bulb{background:var(--amber)}
+.status-item.error .status-bulb{background:var(--red)}
+
+/* =========================================================
+   ROTORES
+   ========================================================= */
+.rotor-section{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:18px 0 22px;
+}
+
+
+/* CONTENEDOR DE LOS TRES ROTORES */
+
+.rotor-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:55px;
+}
+
+
+/* =========================================================
+   ESTRUCTURA DEL ROTOR
+   ========================================================= */
+.rotor{
+    width:170px;
+    height:230px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+
+.rotor-frame{
+    width:145px;
+    height:205px;
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #171717 0%,
+            #343434 8%,
+            #151515 18%,
+            #090909 50%,
+            #151515 82%,
+            #343434 92%,
+            #171717 100%
+        );
+
+    border:3px solid #806637;
+
+    box-shadow:
+        inset 0 0 0 2px #050505,
+        inset 0 0 15px rgba(255,255,255,.05),
+        0 8px 18px rgba(0,0,0,.8);
+}
+
+
+/* BORDE INTERIOR */
+
+.rotor-frame::before{
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border-radius:20px;
+
+    border:2px solid #4c4c4c;
+
+    box-shadow:
+        inset 0 0 8px #000,
+        0 0 5px rgba(214,167,76,.25);
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   TRIÁNGULO SUPERIOR
+   ========================================================= */
+
+.rotor-top-indicator{
+    position:absolute;
+
+    top:-14px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:0;
+    height:0;
+
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:15px solid var(--gold);
+
+    filter:
+        drop-shadow(0 2px 2px #000)
+        drop-shadow(0 0 4px rgba(226,189,104,.35));
+
+    z-index:10;
+}
+
+
+/* =========================================================
+   RUEDA MECÁNICA
+   ========================================================= */
+
+.rotor-disc{
+    position:absolute;
+
+    width:96px;
+    height:155px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:45px;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #080808 0%,
+            #393939 8%,
+            #141414 17%,
+            #242424 50%,
+            #141414 83%,
+            #393939 92%,
+            #080808 100%
+        );
+
+    border:3px solid #6c6c6c;
+
+    box-shadow:
+        inset 0 0 0 2px #0b0b0b,
+        inset 8px 0 12px rgba(255,255,255,.08),
+        inset -8px 0 12px rgba(0,0,0,.7),
+        0 7px 12px rgba(0,0,0,.8);
+
+    transition:
+        transform .18s ease,
+        filter .15s ease;
+}
+
+
+/* =========================================================
+   DIENTES LATERALES
+   ========================================================= */
+
+.rotor-teeth{
+    position:absolute;
+
+    top:8px;
+    bottom:8px;
+
+    left:-9px;
+    right:-9px;
+
+    border-radius:40px;
+
+    pointer-events:none;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #9b9b9b 0px,
+            #9b9b9b 7px,
+            #222 7px,
+            #222 12px
+        );
+
+    opacity:.9;
+
+    z-index:-1;
+}
+
+
+/* =========================================================
+   CENTRO DEL ROTOR
+   ========================================================= */
+
+.rotor-center{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:64px;
+    height:64px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--gold);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:28px;
+    font-weight:bold;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #4b4b4b,
+            #181818 55%,
+            #050505 100%
+        );
+
+    border:2px solid #9a7434;
+
+    box-shadow:
+        inset 0 0 0 2px #111,
+        inset 0 0 12px rgba(0,0,0,.8),
+        0 3px 8px #000,
+        0 0 8px rgba(184,138,59,.18);
+
+    z-index:5;
+
+    transition:
+        transform .18s ease;
+}
+
+
+/* TORNILLO CENTRAL */
+
+.rotor-center::after{
+    content:"";
+
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #d6d6d6,
+            #555 45%,
+            #111 100%
+        );
+
+    border:1px solid #111;
+
+    box-shadow:
+        0 1px 2px #000;
+}
+
+
+/* =========================================================
+   VENTANA INFERIOR
+   ========================================================= */
+
+.rotor-window{
+    position:absolute;
+
+    bottom:-26px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:58px;
+    height:31px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            #242424,
+            #080808
+        );
+
+    border:2px solid #777;
+
+    border-radius:4px;
+
+    box-shadow:
+        inset 0 0 6px #000,
+        0 3px 5px #000;
+
+    z-index:20;
+}
+
+
+.rotor-window span{
+    color:#e7ca79;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:19px;
+    font-weight:bold;
+
+    text-shadow:
+        0 1px 2px #000;
+}
+
+
+/* =========================================================
+   EFECTO AL PASAR EL RATÓN
+   ========================================================= */
+
+.rotor-disc:hover{
+    filter:
+        brightness(1.15)
+        drop-shadow(0 0 5px rgba(226,189,104,.2));
+}
+
+
+/* =========================================================
+   PULSACIÓN
+   ========================================================= */
+
+.rotor-disc:active{
+    filter:brightness(.75);
+}
+
+
+/* =========================================================
+   MOVIMIENTO VERTICAL DEL ROTOR
+   ========================================================= */
+
+.rotor-disc.rotor-moving{
+    animation:
+        rotorStepUp .22s ease-out;
+}
+
+
+@keyframes rotorStepUp{
+
+    0%{
+        transform:
+            translate(-50%,-50%);
+    }
+
+    35%{
+        transform:
+            translate(-50%,-62%);
+    }
+
+    70%{
+        transform:
+            translate(-50%,-43%);
+    }
+
+    100%{
+        transform:
+            translate(-50%,-50%);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+    .rotor-container{
+        gap:25px;
+    }
+
+    .rotor{
+        transform:scale(.85);
+        margin:-12px;
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .rotor-container{
+        gap:5px;
+    }
+
+    .rotor{
+        transform:scale(.7);
+        margin:-25px;
+    }
+
+}
+
+/* =========================================================
+   ENTRADA/SALIDA
+   ========================================================= */
+.io-panel{padding:12px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.display-box{display:flex;flex-direction:column;gap:5px}
+.display-box label,.length-control label{color:var(--gold);font-family:Georgia,"Times New Roman",serif;font-size:10px;font-weight:bold;letter-spacing:1.5px}
+#inputDisplay,.password-display{
+    width:100%;min-width:0;height:42px;padding:0 10px;
+    color:var(--green);background:linear-gradient(180deg,#020b03,#031a06);
+    border:2px solid #353d35;border-radius:5px;
+    font-family:"Courier New",monospace;font-size:15px;
+    box-shadow:inset 0 0 12px rgba(0,255,0,.08),0 2px 5px #000;outline:none
+}
+#inputDisplay::placeholder{color:#2c6b31}
+.password-display{display:flex;align-items:center;overflow-x:auto;white-space:nowrap;text-shadow:0 0 5px rgba(69,255,47,.55)}
+.control-row{display:flex;flex-direction:column;gap:9px}
+.length-control{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#lengthSelect{width:62px;height:30px;color:#f2eadc;background:#252525;border:1px solid #777;border-radius:4px;font-weight:bold;text-align:center;outline:none}
+.action-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.action-buttons button{
+    height:37px;color:#e9ddc9;background:linear-gradient(#4d4d4d,#1d1d1d);
+    border:2px solid #715d42;border-radius:5px;font-family:Georgia,"Times New Roman",serif;
+    font-size:10px;font-weight:bold;letter-spacing:1px;cursor:pointer;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 3px 5px #000
+}
+#generateButton{color:#f3c977}
+#copyButton{color:#c9ffd0}
+.action-buttons button:hover{filter:brightness(1.25)}
+.action-buttons button:active{transform:translateY(1px)}
+.action-buttons button:disabled{opacity:.55;cursor:not-allowed}
+
+/* =========================================================
+   INDICADORES
+   ========================================================= */
+.character-lights{margin-top:10px;padding:8px 12px;display:flex;flex-direction:column;gap:5px}
+.character-row{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
+.character-light{appearance:none;min-width:0;padding:1px 0 3px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#c7b79a;background:transparent;border:0;cursor:default}
+.character-light span{font-family:Georgia,"Times New Roman",serif;font-size:9px}
+.character-light i{width:11px;height:11px;margin-top:2px;display:block;border-radius:50%;background:#161616;border:2px solid #090909;box-shadow:inset 0 1px 2px rgba(255,255,255,.25),0 2px 3px #000;transition:.12s}
+.character-light.active i{background:var(--amber);box-shadow:0 0 6px var(--amber),0 0 13px rgba(255,174,36,.8)}
+
+/* =========================================================
+   TECLADO
+   ========================================================= */
+.keyboard-panel{margin-top:10px;padding:10px 15px 12px;display:flex;flex-direction:column;gap:7px}
+.keyboard-row{display:flex;justify-content:center;gap:clamp(3px,.5vw,7px)}
+.key{
+    min-width:45px;height:34px;padding:0 6px;color:#d8c7aa;
+    background:radial-gradient(circle at 35% 25%,#575757 0%,#282828 35%,#101010 80%);
+    border:2px solid #75654b;border-radius:50%;
+    font-family:Georgia,"Times New Roman",serif;font-size:12px;font-weight:bold;
+    text-shadow:0 2px 2px #000;
+    box-shadow:inset 0 2px 2px rgba(255,255,255,.12),0 3px 4px #000;
+    cursor:pointer;transition:transform .08s,filter .08s,box-shadow .08s
+}
+.key:hover{filter:brightness(1.18)}
+.key:active,.key.active{transform:translateY(2px);color:#fff0bd;box-shadow:0 0 8px rgba(255,174,36,.45),inset 0 3px 4px rgba(0,0,0,.55)}
+.function-key{min-width:62px;border-radius:18px;font-size:8px}
+.offset-1{padding:0 3%}
+.offset-2{padding:0 7%}
+.numbers-row,.symbols-row{margin-top:1px}
+.numbers-row .key,.symbols-row .key{min-width:41px;height:30px;color:#c9ae76;font-size:11px}
+
+/* =========================================================
+   SYSTEM READY
+   ========================================================= */
+.status{
+    margin-top:10px;min-height:35px;display:flex;align-items:center;justify-content:center;
+    gap:9px;color:#9fdc9b;font-family:"Courier New",monospace;font-size:11px;letter-spacing:2px
+}
+.status-led{width:11px;height:11px;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green),0 0 13px var(--green)}
+.status-led.processing{background:var(--amber);box-shadow:0 0 5px var(--amber),0 0 13px var(--amber);animation:blink .65s infinite}
+.status-led.online{background:var(--green)}
+@keyframes blink{50%{opacity:.35}}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+.machine::-webkit-scrollbar{width:5px}
+.machine::-webkit-scrollbar-track{background:#0b0b0b}
+.machine::-webkit-scrollbar-thumb{background:#5b4a31;border-radius:5px}
+
+/* =========================================================
+   ALTURA 768
+   ========================================================= */
+@media(max-height:800px){
+    body{padding:6px}
+    .machine{max-height:calc(100vh - 12px);padding:12px 16px 10px}
+    .header h1{font-size:42px}
+    .top-panel{margin-top:10px}
+    .rotor-chamber{min-height:190px;padding:8px 12px}
+    .rotor-disc{width:80px;height:100px}
+    .rotor-number{width:53px;height:53px;font-size:26px}
+    .character-lights{margin-top:7px;padding:6px 10px}
+    .keyboard-panel{margin-top:7px;padding:7px 12px 8px;gap:5px}
+    .key{height:29px;min-width:38px;font-size:10px}
+    .numbers-row .key,.symbols-row .key{height:26px;min-width:34px}
+    .status{margin-top:7px;min-height:29px}
+}
+
+/* =========================================================
+   VENTANA ESTRECHA
+   ========================================================= */
+@media(max-width:900px){
+    .machine{width:96vw}
+    .top-panel{grid-template-columns:145px minmax(290px,1fr)}
+    .io-panel{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .control-row{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between}
+    .action-buttons{min-width:250px}
+}
+
+/* =========================================================
+   MOVIL
+   ========================================================= */
+@media(max-width:620px){
+    body{padding:4px}
+    .machine{width:99vw;padding:10px}
+    .header h1{font-size:31px;letter-spacing:5px}
+    .header p{font-size:7px;letter-spacing:1px}
+    .top-panel{grid-template-columns:1fr}
+    .status-panel{display:none}
+    .rotor-container{gap:10px}
+    .rotor-disc{width:68px;height:86px}
+    .rotor-number{width:47px;height:47px;font-size:22px}
+    .character-row{gap:1px}
+    .character-light span{font-size:8px}
+    .character-light i{width:8px;height:8px}
+    .keyboard-panel{padding:7px 3px}
+    .keyboard-row{gap:2px}
+    .key{min-width:24px;height:27px;padding:0 2px;font-size:8px}
+    .function-key{min-width:43px;font-size:6px}
+    .numbers-row .key,.symbols-row .key{min-width:23px;height:24px;font-size:8px}
+    .offset-1,.offset-2{padding:0}
+    .io-panel{display:flex}
+    .control-row{flex-direction:column;align-items:stretch}
+    .action-buttons{min-width:0}
+}
